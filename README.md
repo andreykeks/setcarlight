@@ -4,7 +4,7 @@
 
 Веб-приложение для расчёта разметки стены при регулировке ближнего света фар. HTML, CSS и JavaScript; интерфейс на русском, расчёты выполняются в браузере. Серверная часть и база данных не требуются.
 
-Планируемый адрес в Vercel: **https://setcarlight.vercel.app**. Проект подготовлен к публикации; адрес ещё не назначен. Предыдущее размещение остановлено.
+Рабочая версия: **https://setcarlight.vercel.app**. Сайт опубликован в Vercel из ветки `main` репозитория GitHub. Предыдущее размещение остановлено.
 
 ## Локальный запуск
 
@@ -100,9 +100,11 @@ npm --prefix Web run build
 
 Браузерные проверки Playwright описаны в [Web/README.md](Web/README.md).
 
-## Публикация в Vercel
+## Размещение и обновления в Vercel
 
-Импортируйте личный репозиторий GitHub в личную команду Vercel. Укажите Root Directory `Web`, Framework Preset `Other`, Build Command `npm run build`, Output Directory `public`, Node.js `22.x`. Установка зависимостей отключена в `vercel.json`, переменные окружения не требуются.
+Проект Vercel связан с `andreykeks/setcarlight`. Корневая папка — `Web`, Framework Preset — `Other`, Build Command — `npm run build`, Output Directory — `public`. Для проверок используется Node.js `22.x`, закреплённый в `Web/package.json`. Установка зависимостей отключена в `vercel.json`, переменные окружения не требуются.
+
+Обновления: отдельная ветка → pull request → проверка Vercel Preview → слияние в `main` → автоматическая публикация Production. При неуспешных проверках новый выпуск не заменяет работающий сайт.
 
 Пошаговая инструкция и описание настроек — в [Web/README.md](Web/README.md).
 
