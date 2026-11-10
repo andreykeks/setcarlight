@@ -1,0 +1,10 @@
+.git/
+.vercel/
+.env*
+node_modules/
+.browsers/
+.npm-cache/
+artifacts/
+README.md
+tests/browser.mjs
+tests/published-smoke.mjs

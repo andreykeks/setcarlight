@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111612">
+  <meta name="description" content="Калькулятор регулировки фар автомобиля: высота и боковые отметки на стене, угол автомобиля, поправка на линзу. Все размеры в миллиметрах.">
+  <title>Свет — калькулятор регулировки фар</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+<svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h7m5 0h4M4 17h3m5 0h8"/><circle cx="13.5" cy="7" r="2.5"/><circle cx="9.5" cy="17" r="2.5"/></symbol>
+  <symbol id="i-checklist" viewBox="0 0 24 24"><path d="m3 7 2 2 4-4m3 2h9M3 17l2 2 4-4m3 2h9"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 2 1 3 3 0 0 1 2-1h6v15h-6a3 3 0 0 0-2 1 3 3 0 0 0-2-1H4ZM12 5v15"/></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 10a8 8 0 1 1 1 8M4 4v6h6"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 15v5h16v-5"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L20 5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.2"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="m3 16 13-13 5 5L8 21ZM8 11l3 3m0-6 3 3m0-6 3 3"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m5 5 14 14m-9 0h9v-9"/></symbol>
+  <symbol id="i-horizontal" viewBox="0 0 24 24"><path d="M3 12h18M7 8l-4 4 4 4m10-8 4 4-4 4"/></symbol>
+</defs></svg>
+<div class="application">
+  <aside class="sidebar">
+    <a class="brand" href="#calculator" aria-label="Свет — калькулятор"><img src="/assets/favicon.svg" width="47" height="47" alt=""><span><b>свет</b><small>НАСТРОЙКА ФАР</small></span></a>
+    <div class="nav-caption">РАБОЧЕЕ МЕСТО</div>
+    <nav aria-label="Разделы приложения">
+      <a href="#calculator" class="nav-link active" data-nav="calculator" aria-current="page"><svg class="icon"><use href="#i-sliders"/></svg><span>Калькулятор</span><i></i></a>
+      <a href="#preparation" class="nav-link" data-nav="preparation"><svg class="icon"><use href="#i-checklist"/></svg><span>Подготовка</span><i></i></a>
+      <a href="#guide" class="nav-link" data-nav="guide"><svg class="icon"><use href="#i-book"/></svg><span>Как пользоваться</span><i></i></a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="side-note"><svg class="icon"><use href="#i-ruler"/></svg><b>Сначала — маркировка</b><p>Нужный уклон указан на фаре или в руководстве автомобиля.</p></div>
+      <div class="local-status"><span class="status-dot"></span> Расчёт на устройстве <span class="version">WEB 1.4</span></div>
+    </div>
+  </aside>
+  <main>
+    <header class="topbar"><div class="breadcrumb"><span>Рабочее место</span><span class="chevron">›</span><span id="breadcrumb-current">Калькулятор</span></div><div class="toolbar" id="calculator-toolbar"><button type="button" class="button-quiet" id="reset"><svg class="icon"><use href="#i-reset"/></svg><span>Сбросить</span></button><button type="button" class="button-outline" id="print" title="В диалоге печати выберите «Сохранить как PDF»"><svg class="icon"><use href="#i-download"/></svg><span>Сохранить PDF</span></button></div></header>
+    <section id="calculator" class="page calculator-page" aria-labelledby="calculator-title">
+      <div class="page-heading"><div class="eyebrow"><span class="status-dot"></span> БЛИЖНИЙ СВЕТ</div><h1 id="calculator-title">Каждый миллиметр имеет значение.</h1><p>Рассчитайте высоту границы света и перенесите отметки на стену.</p></div>
+      <div class="calculator-grid">
+        <div class="parameters-pane">
+          <form id="parameters" autocomplete="off" novalidate>
+            <div class="card parameters-card"><div class="card-heading"><h2>Параметры</h2><svg class="icon muted"><use href="#i-sliders"/></svg></div>
+              <div id="basic-fields"></div>
+              <div class="auto-note"><span>↻</span> Расчёт обновляется автоматически</div>
+            </div>
+            <div class="card geometry-card" id="geometry-card" hidden><div class="card-heading"><h2>Положение автомобиля</h2><svg class="icon muted"><use href="#i-horizontal"/></svg></div><p class="field-description">Все расстояния до стен — по кратчайшему перпендикуляру. Стороны — по ходу движения.</p><p id="parallel-recommendation" class="alignment-note">Рекомендуется выровнять автомобиль параллельно боковой стене, чтобы расстояния от центров переднего и заднего бамперов до неё совпадали.</p><fieldset class="side-picker"><legend class="field-label">Боковая стена</legend><div class="segmented"><label><input type="radio" name="side" value="left" checked><span>Слева</span></label><label><input type="radio" name="side" value="right"><span>Справа</span></label></div></fieldset><fieldset class="side-picker" id="corner-source-picker"><legend class="field-label">Угол стен для разметки</legend><div class="segmented"><label><input type="radio" name="cornerSource" value="headlights" checked><span>По фарам</span></label><label><input type="radio" name="cornerSource" value="triangle"><span>По треугольнику</span></label></div></fieldset><p class="field-description">Выбранный способ задаёт угол для разметки. Другой способ остаётся доступен для сравнения.</p><div class="group-label">ДО БОКОВОЙ СТЕНЫ</div><div id="side-fields"></div><hr><div class="group-label">ДО ПЕРЕДНЕЙ СТЕНЫ</div><div id="front-fields"></div><p class="field-description">Разница расстояний от фар и расстояние между их центрами задают угол автомобиля. Центры фар должны быть на одной поперечной линии.</p><div id="bumper-field"></div><p id="bumper-not-needed" class="field-description">В способе по фарам замер от переднего бампера до передней стены не требуется: для привязки принята параллельность боковой стене.</p><hr><div id="corner-toggle"></div><p id="right-angle-note" class="field-description">Угол стен определяется по фарам при условии параллельности автомобиля боковой стене.</p><div id="triangle-section" hidden><div id="triangle-diagram" class="triangle-diagram"></div><div id="triangle-fields"></div><p class="field-description">O — угол стен, A и B — произвольные точки. Все три стороны измерьте в одной горизонтальной плоскости.</p></div></div>
+          </form>
+        </div>
+        <div class="results-pane" id="results" tabindex="-1">
+          <div class="card error-card" id="error-card" hidden><div class="card-heading"><h2>Проверьте параметры</h2><svg class="icon"><use href="#i-info"/></svg></div><p id="calculation-error" role="status"></p><p class="muted">Расчёт и схема появятся после ввода корректных значений.</p></div>
+          <div id="valid-results">
+            <div class="card result-card"><div class="card-heading"><div class="result-label"><span class="check-circle">✓</span> Ваша разметка</div><button type="button" id="copy" class="icon-button" aria-label="Скопировать расчёт" title="Скопировать расчёт"><svg class="icon"><use href="#i-copy"/></svg></button></div><div class="result-values"><div><div class="metric-label">ГРАНИЦА СВЕТА ОТ ПОЛА</div><div class="primary-result"><span id="target-height">650</span><span class="unit">мм</span></div><p class="result-caption" id="right-target">Для левой и правой фары</p></div><div class="drop-block"><div class="metric-label">СНИЖЕНИЕ ЛУЧА</div><div class="drop-result"><svg class="icon"><use href="#i-down"/></svg><span id="beam-drop">50</span><span class="unit">мм</span></div><p class="result-caption" id="drop-caption">Угол 0,57°</p></div></div><div class="result-formula"><p id="lens-explanation" class="lens-explanation" hidden></p><p id="formula">700 мм − (5000 мм × 1 / 100) = 650 мм</p><p id="axis-distances" class="result-caption" hidden></p></div></div>
+            <div class="card horizontal-result" id="horizontal-result" hidden></div>
+            <div class="card diagram-card"><div class="card-heading diagram-heading"><h2>Схема разметки</h2><div class="segmented diagram-tabs" role="group" aria-label="Вид схемы"><button type="button" class="selected" data-diagram="wall" aria-pressed="true">Стена</button><button type="button" data-diagram="side" aria-pressed="false">Вид сбоку</button><button type="button" data-diagram="plan" aria-pressed="false" hidden>Сверху</button></div></div><div id="beam-diagram"></div><div class="diagram-legend"><span><i class="legend-line dashed"></i><span id="reference-legend">Напротив фар</span></span><span><i class="legend-line"></i><span id="target-legend">Целевые отметки</span></span><span class="diagram-scale">Схема</span></div><p class="diagram-caption" id="diagram-caption"></p></div>
+          </div>
+          <div class="preparation-note"><svg class="icon"><use href="#i-info"/></svg><div><b>Точность начинается с ровной площадки</b><p id="surface-note">Расчёт предполагает горизонтальную площадку и стену перпендикулярно автомобилю. Для адаптивных фар проверьте процедуру калибровки.</p></div><a href="#preparation" class="icon-button" aria-label="Подготовка к регулировке"><svg class="icon"><use href="#i-arrow"/></svg></a></div>
+          <div class="page-footnote"><div id="storage-note">Все размеры в миллиметрах <span class="separator">·</span> Параметры сохраняются в этом браузере</div><a class="source-link repository-link" href="https://github.com/andreykeks/setcarlight" target="_blank" rel="noopener noreferrer">Исходный код на GitHub ↗</a></div>
+        </div>
+      </div>
+    </section>
+    <section id="preparation" class="page article-page" aria-labelledby="preparation-title" hidden><div class="page-heading"><div class="eyebrow">ПЕРЕД НАСТРОЙКОЙ</div><h1 id="preparation-title">Подготовка к регулировке</h1><p>Пять шагов перед тем, как переносить размеры на стену.</p></div><div class="checklist-toolbar"><span id="checklist-progress">Выполнено 0 из 5</span><button class="button-quiet" id="clear-checklist" type="button">Очистить отметки</button></div><div id="preparation-items"></div><a class="source-link" href="https://www.hella.com/techworld/en/technical/automotive-lighting/headlight-adjustment/" target="_blank" rel="noopener noreferrer">Методика регулировки HELLA ↗</a></section>
+    <section id="guide" class="page article-page" aria-labelledby="guide-title" hidden><div class="page-heading"><div class="eyebrow">ПОНЯТНАЯ ГЕОМЕТРИЯ</div><h1 id="guide-title">От расчёта к разметке</h1><p>Калькулятор геометрии ближнего света для метода со стеной.</p></div><div class="card guide-formula"><h2>Как считается снижение</h2><p class="formula-highlight">Снижение = расстояние × уклон / 100</p><p>При уклоне 1%: 5000 мм × 1 / 100 = 50 мм. Если высота фары 700 мм, отметка на стене будет на высоте 650 мм. Процент — отношение снижения к расстоянию, а не угол в градусах.</p></div><div id="guide-steps"></div><div class="card prose"><h2>Линза за стеклом</h2><p>Включите «Учесть линзу за стеклом», если измеряете расстояние до наружного стекла. Поправка — разница кратчайших расстояний от стекла и линзы до передней стены. До линзы = до стекла + поправка, в том числе при развороте автомобиля.</p><p>Например, 5000 мм до стекла и 100 мм поправки дают 5100 мм до линзы. Вводите общую поправку для обеих фар, а высоту и расстояние между центрами — для линз. Боковые смещения отсчитываются от перпендикуляров от линз.</p></div><div class="card prose"><h2>Боковая поправка и угол стен</h2><p>Угол автомобиля определяется по разнице расстояний от двух фар до передней стены и расстоянию между центрами фар. Центры должны находиться на одной поперечной линии. Если оптика смещена вперёд-назад, этот метод требует дополнительных данных.</p><p>Рекомендуется выровнять автомобиль параллельно боковой стене, чтобы замеры от центров бамперов совпадали. Выберите рабочий способ переключателем «По фарам / По треугольнику». Оба способа остаются доступны для сравнения.</p><p>В способе по фарам принята параллельность автомобиля боковой стене: угол стен равен 90° плюс разворот к нормали передней стены при боковой стене слева, и 90° минус разворот при стене справа. Замер от бампера до передней стены не требуется. Если боковые расстояния различаются, результат этого способа условный — приложение предупреждает об этом, сохраняя возможность сравнения.</p><p>Для треугольника выберите точку A на боковой стене и B — на передней. O — их угол. Измерьте OA, OB и AB в одной горизонтальной плоскости. При выборе этого способа дополнительно нужен замер от центра переднего бампера до передней стены для привязки отметок от угла. Оба угла, их разница и выбранный способ показываются в комментарии. Незавершённый треугольник не блокирует способ по фарам.</p><p>Разница расстояний от фар сильно влияет на боковую поправку. Нужны точные перпендикуляры; более длинные стороны треугольника уменьшают влияние ошибки замера.</p></div><div class="card prose scope-note"><h2>Область применения</h2><p>Приложение рассчитывает геометрическую разметку. Уклон, загрузка, корректор и процедура калибровки задаются производителем автомобиля. Калькулятор не измеряет световой пучок и не калибрует адаптивную оптику.</p><a class="source-link" href="https://www.hella.com/techworld/en/technical/automotive-lighting/headlight-adjustment/" target="_blank" rel="noopener noreferrer">Методика и подготовка автомобиля — HELLA ↗</a></div><div class="privacy-note">Расчёты выполняются на вашем устройстве. Параметры сохраняются только в локальном хранилище браузера. Внешняя ссылка на методику открывается по нажатию.</div></section>
+  </main>
+</div>
+<div id="toast" class="toast" role="status" hidden></div>
+<article id="print-report" aria-label="Расчёт для печати"></article>
+<noscript><div class="noscript">Для работы калькулятора включите JavaScript. Все расчёты выполняются в браузере.</div></noscript>
+</body>
+</html>
